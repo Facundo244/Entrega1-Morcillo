@@ -7,4 +7,7 @@ urlpatterns = [
     path('Profesionales' , views.profesionales, name ="Profesionales" ),
     path('Turno' , views.turnos, name ="Turno"),
     path('', views.inicio, name ="Inicio"),
+    path('sectoresFormularios', views.sectoresFormulario, name="sectoresFormulario"),
+    path('busquedaSector', views.busquedaSector, name='busquedaSector'),
+    path('buscar' , views.buscar, name="buscar"),
 ]

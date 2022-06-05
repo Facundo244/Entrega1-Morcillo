@@ -23,7 +23,7 @@
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'Inicio' %}">Presentacion</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'Profesionales' %}">Profesionales</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'Sectores' %}">Sectores</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'Turno' %}">Turnos</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'Turno' %}">Contactos</a>
                 </div>
             </div>
             <!-- Page content wrapper-->
@@ -58,6 +58,8 @@
                 <div class="container-fluid">
                     <h1 class="mt-4"></h1>
                     <p></p>
+                    {% block section_name %}
+                    {% endblock %}
                     <p>
                         
                         <code></code>
