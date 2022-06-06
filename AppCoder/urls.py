@@ -10,4 +10,9 @@ urlpatterns = [
     path('sectoresFormularios', views.sectoresFormulario, name="sectoresFormulario"),
     path('busquedaSector', views.busquedaSector, name='busquedaSector'),
     path('buscar' , views.buscar, name="buscar"),
+    path('contactoFormulario' , views.contactoFormulario, name = 'contactoFormulario'),
+    path('buscarContacto' , views.buscarContacto , name ="buscarContacto"),
+    path('profesionaFormulario', views.profesionalFormulario , name = "profesionalFormulario"),
+    path('buscarProfesional ', views.buscarProfesional, name="buscarProfesional"),
+
 ]

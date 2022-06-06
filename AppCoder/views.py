@@ -2,8 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from AppCoder import views
 from django.template import loader
-from AppCoder.models import Sector
-from AppCoder.forms import SectorFormulario
+from AppCoder.models import Contacto, Profesional, Sector
+from AppCoder.forms import ContactoFormulario, ProfesionalFormulario, SectorFormulario
 
 
 
@@ -71,10 +71,74 @@ def buscar(request):
 
 
 
+def contactoFormulario(request):
+
+    if request.method == 'POST':
+
+        miFormulario = ContactoFormulario(request.POST)
+
+        print(miFormulario)
+
+        if miFormulario.is_valid:
+
+            informacion = miFormulario.cleaned_data
+
+            contactos = Contacto(telefono=informacion['telefono'] , localidad=informacion['localidad'])
+
+            contactos.save()
+
+            return render(request , "AppCoder/inicio.html")
+    else:
+
+        miFormulario = ContactoFormulario()
+    return render(request , "AppCoder/contactoFormulario.html" , {"miFormulario":miFormulario})
 
 
 
+def buscarContacto(request):
 
-#def buscar(request):
-    #respuesta = f"Estoy buscando el sector {request.GET['sector']}"
-    #return HttpResponse(respuesta)
+    if request.GET["localidad"]:
+        localidad= request.GET['localidad']
+        localidades = Contacto.objects.filter(localidad=localidad)
+        return render(request, 'AppCoder/resultadoBusquedaContacto.html' , {'localidad': localidad,'localidades':localidades})
+    else:
+        respuesta = "No se ingreso ningun sector existente"
+        return HttpResponse(respuesta)
+
+
+
+def profesionalFormulario(request):
+
+    if request.method == 'POST':
+
+        miFormulario = ProfesionalFormulario(request.POST)
+
+        print(miFormulario)
+
+        if miFormulario.is_valid:
+
+            informacion = miFormulario.cleaned_data
+
+            profesionales = Profesional(nombre=informacion['nombre'] , apellido=informacion['apellido'] , email=informacion['email'])
+
+            profesionales.save()
+
+            return render(request , "AppCoder/inicio.html")
+    else:
+
+        miFormulario = ProfesionalFormulario()
+    return render(request , "AppCoder/profesionalFormulario.html" , {"miFormulario":miFormulario})
+
+
+
+def buscarProfesional(request):
+
+    if request.GET["nombre"]:
+        nombre= request.GET['nombre']
+        nombres = Profesional.objects.filter(nombre=nombre)
+        return render(request, 'AppCoder/resultadoBusquedaProfesional.html' , {'nombre': nombre,'nombres':nombres})
+    else:
+        respuesta = "No se ingreso ningun sector existente"
+        return HttpResponse(respuesta)
+
+
